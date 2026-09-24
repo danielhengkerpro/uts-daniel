@@ -1,0 +1,110 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://Scripts/checkpoint.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Items/Checkpoints/Checkpoint/Checkpoint (No Flag).png" id="2_noflag"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Items/Checkpoints/Checkpoint/Checkpoint (Flag Idle)(64x64).png" id="3_flagidle"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Items/Checkpoints/Checkpoint/Checkpoint (Flag Out) (64x64).png" id="4_flagout"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_noflag"]
+atlas = ExtResource("2_noflag")
+region = Rect2(0, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi0"]
+atlas = ExtResource("3_flagidle")
+region = Rect2(0, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi1"]
+atlas = ExtResource("3_flagidle")
+region = Rect2(64, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi2"]
+atlas = ExtResource("3_flagidle")
+region = Rect2(128, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi3"]
+atlas = ExtResource("3_flagidle")
+region = Rect2(192, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi4"]
+atlas = ExtResource("3_flagidle")
+region = Rect2(256, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi5"]
+atlas = ExtResource("3_flagidle")
+region = Rect2(320, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi6"]
+atlas = ExtResource("3_flagidle")
+region = Rect2(384, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi7"]
+atlas = ExtResource("3_flagidle")
+region = Rect2(448, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi8"]
+atlas = ExtResource("3_flagidle")
+region = Rect2(512, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi9"]
+atlas = ExtResource("3_flagidle")
+region = Rect2(576, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo0"]
+atlas = ExtResource("4_flagout")
+region = Rect2(0, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo1"]
+atlas = ExtResource("4_flagout")
+region = Rect2(64, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo2"]
+atlas = ExtResource("4_flagout")
+region = Rect2(128, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo3"]
+atlas = ExtResource("4_flagout")
+region = Rect2(192, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo4"]
+atlas = ExtResource("4_flagout")
+region = Rect2(256, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo5"]
+atlas = ExtResource("4_flagout")
+region = Rect2(320, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo6"]
+atlas = ExtResource("4_flagout")
+region = Rect2(384, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo7"]
+atlas = ExtResource("4_flagout")
+region = Rect2(448, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo8"]
+atlas = ExtResource("4_flagout")
+region = Rect2(512, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo9"]
+atlas = ExtResource("4_flagout")
+region = Rect2(576, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo10"]
+atlas = ExtResource("4_flagout")
+region = Rect2(640, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo11"]
+atlas = ExtResource("4_flagout")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cp"]
+animations = [{
+"frames": [SubResource("AtlasTexture_noflag")],
+"loop": true,
+"name": &"no_flag",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_fi0"), SubResource("AtlasTexture_fi1"), SubResource("AtlasTexture_fi2"), SubResource("AtlasTexture_fi3"), SubResource("AtlasTexture_fi4"), SubResource("AtlasTexture_fi5"), SubResource("AtlasTexture_fi6"), SubResource("AtlasTexture_fi7"), SubResource("AtlasTexture_fi8"), SubResource("AtlasTexture_fi9")],
+"loop": true,
+"name": &"flag_idle",
+"speed": 10.0
+}, {
+"frames": [SubResource("AtlasTexture_fo0"), SubResource("AtlasTexture_fo1"), SubResource("AtlasTexture_fo2"), SubResource("AtlasTexture_fo3"), SubResource("AtlasTexture_fo4"), SubResource("AtlasTexture_fo5"), SubResource("AtlasTexture_fo6"), SubResource("AtlasTexture_fo7"), SubResource("AtlasTexture_fo8"), SubResource("AtlasTexture_fo9"), SubResource("AtlasTexture_fo10"), SubResource("AtlasTexture_fo11")],
+"loop": false,
+"name": &"flag_out",
+"speed": 16.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp"]
+size = Vector2(24, 46)
+
+[node name="Checkpoint" type="Area2D"]
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_cp")
+animation = &"no_flag"
+autoplay = "no_flag"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 9)
+shape = SubResource("RectangleShape2D_cp")

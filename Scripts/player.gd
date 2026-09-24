@@ -83,3 +83,11 @@ func show_win_ui() -> void:
 	if win_panel and win_label:
 		win_label.text = "CONGRATULATIONS!\nALL WORLDS CLEARED!\nFINAL SCORE: %d" % score
 		win_panel.visible = true
+
+
+func notify_checkpoint() -> void:
+	if score_label:
+		var orig = score_label.text
+		score_label.text = "CHECKPOINT REACHED!"
+		await get_tree().create_timer(1.2).timeout
+		update_score_ui()
