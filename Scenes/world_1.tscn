@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://crlwilxcjnogi"]
+[gd_scene format=4]
 
 [ext_resource type="PackedScene" path="res://Scenes/level_transition.tscn" id="10_trans"]
 [ext_resource type="Texture2D" uid="uid://btxe07khb1kg3" path="res://Assets/Images/Terrain/Terrain (16x16).png" id="1_a65vn"]
