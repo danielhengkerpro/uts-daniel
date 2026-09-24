@@ -1,0 +1,18 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://Scripts/spikes.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Traps/Spikes/Idle.png" id="2_idle"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spikes"]
+size = Vector2(16, 8)
+
+[node name="Spikes" type="Area2D"]
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_idle")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_spikes")

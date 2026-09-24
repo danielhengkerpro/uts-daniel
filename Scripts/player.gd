@@ -6,13 +6,19 @@ const SPEED = 250.0
 const JUMP_VELOCITY = -420.0
 
 var score: int = 0
+var spawn_position: Vector2 = Vector2(80, 410)
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var score_label: Label = $HUD/ScorePanel/ScoreLabel
+@onready var win_panel: Control = $HUD/WinPanel
+@onready var win_label: Label = $HUD/WinPanel/WinLabel
 
 
 func _ready() -> void:
+	spawn_position = global_position
 	update_score_ui()
+	if win_panel:
+		win_panel.visible = false
 
 
 func _physics_process(delta: float) -> void:
@@ -62,3 +68,14 @@ func add_score(amount: int) -> void:
 func update_score_ui() -> void:
 	if score_label:
 		score_label.text = "SCORE: %d" % score
+
+
+func die_and_respawn() -> void:
+	velocity = Vector2.ZERO
+	global_position = spawn_position
+
+
+func show_win_ui() -> void:
+	if win_panel and win_label:
+		win_label.text = "LEVEL COMPLETE!\nFINAL SCORE: %d" % score
+		win_panel.visible = true
