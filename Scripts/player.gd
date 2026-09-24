@@ -43,6 +43,14 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	# Dorong objek interaktif (seperti pushable box)
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		var collider := collision.get_collider()
+		if collider and collider.has_method("push"):
+			if abs(collision.get_normal().x) > 0.6:
+				collider.push(-sign(collision.get_normal().x))
+
 	# Animasi & arah hadap
 	update_animation(direction)
 
@@ -87,7 +95,6 @@ func show_win_ui() -> void:
 
 func notify_checkpoint() -> void:
 	if score_label:
-		var orig = score_label.text
 		score_label.text = "CHECKPOINT REACHED!"
 		await get_tree().create_timer(1.2).timeout
 		update_score_ui()

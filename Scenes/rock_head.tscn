@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://cueyb5ol70eoh"]
+
+[ext_resource type="Script" path="res://Scripts/rock_head.gd" id="1_rock"]
+[ext_resource type="Texture2D" uid="uid://dbjguafp67u14" path="res://Assets/Images/Traps/Rock Head/Idle.png" id="2_idle"]
+[ext_resource type="Texture2D" uid="uid://ct7gfdvf125vf" path="res://Assets/Images/Traps/Rock Head/Blink (42x42).png" id="3_blink"]
+[ext_resource type="Texture2D" uid="uid://bos7nckdd0q1b" path="res://Assets/Images/Traps/Rock Head/Bottom Hit (42x42).png" id="4_hit"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0"]
+atlas = ExtResource("3_blink")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1"]
+atlas = ExtResource("3_blink")
+region = Rect2(42, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2"]
+atlas = ExtResource("3_blink")
+region = Rect2(84, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3"]
+atlas = ExtResource("3_blink")
+region = Rect2(126, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0"]
+atlas = ExtResource("4_hit")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1"]
+atlas = ExtResource("4_hit")
+region = Rect2(42, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2"]
+atlas = ExtResource("4_hit")
+region = Rect2(84, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3"]
+atlas = ExtResource("4_hit")
+region = Rect2(126, 0, 42, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rock"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3")
+}],
+"loop": 1,
+"name": &"blink",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3")
+}],
+"loop": 0,
+"name": &"bottom_hit",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_idle")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_solid"]
+size = Vector2(34, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hazard"]
+size = Vector2(38, 38)
+
+[node name="RockHead" type="Node2D" unique_id=1223570433]
+script = ExtResource("1_rock")
+
+[node name="Body" type="AnimatableBody2D" parent="." unique_id=1080682033]
+sync_to_physics = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Body" unique_id=1723034854]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_rock")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body" unique_id=1788094864]
+shape = SubResource("RectangleShape2D_solid")
+
+[node name="HazardArea" type="Area2D" parent="Body" unique_id=590307890]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/HazardArea" unique_id=684541992]
+shape = SubResource("RectangleShape2D_hazard")
